@@ -9,20 +9,19 @@ using System.Reflection;
 
 namespace PayloadSharp;
 
-public class Payload
+public class PayloadReader
 {
     public string ObjectName;
     public string SchemaName;
     public string StructSchemaName;
 
     Dictionary<string, PayloadEntry> data = new();
-    Dictionary<string, FieldInfo> schemaData = new();
-
-    bool insideBrackets;
-    bool endOfFile;
 
     public T LoadFile<T>(string path)
     {
+        data.Clear();
+        ObjectName = "";
+        SchemaName = "";
         StructSchemaName = GetSchemaName(typeof(T));
         string[] lines = File.ReadAllLines(path);
 
@@ -42,7 +41,18 @@ public class Payload
 
     string[] GetHeader(string[] lines)
     {
-        string[] header = lines[0].Split(':');
+        if (lines.Length == 0)
+            throw new FormatException("Payload file is empty.");
+
+        string[] header = lines[0].Split(':', 2);
+
+        if (header.Length != 2 ||
+            string.IsNullOrWhiteSpace(header[0]) ||
+            string.IsNullOrWhiteSpace(header[1]))
+        {
+            throw new FormatException("Invalid Payload header.");
+        }
+
         ObjectName = header[0].Trim();
         SchemaName = header[1].Trim();
         lines = lines.Skip(1).ToArray();
@@ -58,18 +68,19 @@ public class Payload
 
     void ParseLine(string line)
     {
-        // TOOD: MAKE THIS SAFER
-        if(line.Trim() == "{") {
-            insideBrackets = true;
+        line = line.Trim();
+
+        if (line == "{" || line == "}")
             return;
-        }
-        if(line.Trim() == "}") {
-            endOfFile = true;
-            return;
-        }
 
         string[] sides = line.Split('=', 2, StringSplitOptions.TrimEntries);
         string[] parts = sides[0].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if (sides.Length != 2 || parts.Length != 2 ||
+            string.IsNullOrWhiteSpace(sides[1]))
+        {
+            throw new FormatException($"Invalid entry: {line}");
+        }
 
         PayloadEntry entry = new();
 

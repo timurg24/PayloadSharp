@@ -5,9 +5,9 @@ public class Program
 {
     public static void Main()
     {
-        PayloadSharp.Payload file = new Payload();
+        PayloadSharp.PayloadReader reader = new Payload();
         AircraftData aircraft =
-            file.LoadFile<AircraftData>("example.pay");
+            reader.LoadFile<AircraftData>("example.pay");
 
         foreach (var field in typeof(AircraftData).GetFields())
         {

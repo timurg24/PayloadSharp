@@ -8,10 +8,12 @@
     <Description>A lightweight config reader with out-of-the-box support for multiple data types.</Description>
     <PackageTags>config parser ini serialization</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
       <Compile Remove="examples/**/*.cs" />
+      <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
