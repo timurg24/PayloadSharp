@@ -6,7 +6,7 @@ BoeingStearman : Aircraft
     float wingspan = 9.8 m
     float emptyWeight = 876 kg
     float mtow = 1195 kg
-    double fuelCapacity = 170 L
+    float fuelCapacity = 170 L
     //
     // Wikipedia contributors. "Boeing-Stearman Model 75." Wikipedia, The Free Encyclopedia. 
     //  Wikipedia, The Free Encyclopedia, 19 Nov. 2026. Web. 22 Nov. 2026.

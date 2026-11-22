@@ -8,6 +8,11 @@ public class Program
         PayloadSharp.Payload file = new Payload();
         AircraftData aircraft =
             file.LoadFile<AircraftData>("example.pay");
+
+        foreach (var field in typeof(AircraftData).GetFields())
+        {
+            Console.WriteLine($"{field.Name}: {field.GetValue(aircraft)}");
+        }
     }
 }
 
