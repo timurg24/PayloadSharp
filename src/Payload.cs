@@ -89,6 +89,11 @@ public class Payload
         entry.value = parts[3];
         entry.value = entry.value.Replace("\"", "");
 
+        if (parts.Length > 4)
+        {
+            entry.unit = parts[4];
+        }
+
         data.Add(entry.key, entry);
     }
 
@@ -112,6 +117,7 @@ public class Payload
             if(attribute == null) continue;
 
             var range = field.GetCustomAttribute<PayloadRangeAttribute>();
+            var unit = field.GetCustomAttribute<PayloadUnitAttribute>();
              
             if(data.TryGetValue(attribute.Name, out PayloadEntry entry))
             {
@@ -139,6 +145,8 @@ public class Payload
                         );
                     }
                 }
+
+
 
                 field.SetValue(instance, value);
             }

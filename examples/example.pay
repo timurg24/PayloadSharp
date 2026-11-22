@@ -2,11 +2,11 @@ BoeingStearman : Aircraft
 {
     string name = "Boeing-Stearman PT-17" // why are there so many names?
     int crew = 2
-    float length = 7.54m
-    float wingspan = 9.8m
-    float emptyWeight = 876kg
-    float mtow = 1195kg
-    float fuelCapacity = 170L
+    float length = 7.54 m
+    float wingspan = 9.8 m
+    float emptyWeight = 876 kg
+    float mtow = 1195 kg
+    float fuelCapacity = 170 L
     //
     // Wikipedia contributors. "Boeing-Stearman Model 75." Wikipedia, The Free Encyclopedia. 
     //  Wikipedia, The Free Encyclopedia, 19 Nov. 2026. Web. 22 Nov. 2026.
