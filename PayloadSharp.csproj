@@ -1,9 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net11.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net10.0</TargetFramework>
+    <PackageId>PayloadSharp</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Timur Gabdrakhmanov (timurg24, CoderFlower)</Authors>
+    <Description>A lightweight config reader with out-of-the-box support for multiple data types.</Description>
+    <PackageTags>config parser ini serialization</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
