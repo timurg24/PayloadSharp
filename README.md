@@ -1,6 +1,6 @@
 # PayloadSharp
 
-A C# reader and writer for my config file format Payload.
+A C# reader and writer for my schema-based config file format Payload.
 
 ## Features
 

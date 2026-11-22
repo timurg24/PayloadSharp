@@ -8,8 +8,6 @@ public class Program
         PayloadSharp.Payload file = new Payload();
         AircraftData aircraft =
             file.LoadFile<AircraftData>("example.pay");
-
-        
     }
 }
 
