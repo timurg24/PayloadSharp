@@ -1,16 +1,16 @@
-* Payload *
-// This is an example file
 BoeingStearman : Aircraft
 {
-    string name = "Boeing-Stearman PT-17"
+    string name = "Boeing-Stearman PT-17" // why are there so many names?
     int crew = 2
     float length = 7.54m
     float wingspan = 9.8m
     float emptyWeight = 876kg
     float mtow = 1195kg
     float fuelCapacity = 170L
-    /*
-        Wikipedia contributors. "Boeing-Stearman Model 75." Wikipedia, The Free Encyclopedia. 
-        Wikipedia, The Free Encyclopedia, 19 Nov. 2026. Web. 22 Nov. 2026.
-    */
+    //
+    // Wikipedia contributors. "Boeing-Stearman Model 75." Wikipedia, The Free Encyclopedia. 
+    //  Wikipedia, The Free Encyclopedia, 19 Nov. 2026. Web. 22 Nov. 2026.
+    //
 }
+
+// This is an example file demonstrating the features and syntax of Payload
