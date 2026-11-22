@@ -121,6 +121,24 @@ public class Payload
              
             if(data.TryGetValue(attribute.Name, out PayloadEntry entry))
             {
+
+                // TYPE CHECK
+                if (entry.type != field.FieldType)
+                {
+                    throw new InvalidOperationException(
+                        $" ** Type mismatch for '{entry.key}'. " +
+                        $"Schema expects '{field.FieldType.Name}', " +
+                        $"but Payload contains '{entry.type.Name}'. **"
+                    );
+                }
+
+                // UNIT CHECK
+                if(unit != null)
+                {
+                    if(unit.Unit != entry.unit)
+                        throw new Exception($" ** Units are not matching for entry: {entry.key}. (Schema: {unit.Unit}, Payload: {entry.unit}) **");
+                }
+
                 object value = Convert.ChangeType(
                     entry.value,
                     field.FieldType,
