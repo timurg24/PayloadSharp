@@ -68,10 +68,12 @@ public class Payload
             return;
         }
 
-        string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        string[] sides = line.Split('=', 2, StringSplitOptions.TrimEntries);
+        string[] parts = sides[0].Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
         PayloadEntry entry = new();
-        // Get data type
+
+        // Your existing type switch
         entry.type = parts[0] switch
         {
             "string" => typeof(string),
@@ -86,12 +88,21 @@ public class Payload
         };
 
         entry.key = parts[1];
-        entry.value = parts[3];
-        entry.value = entry.value.Replace("\"", "");
 
-        if (parts.Length > 4)
+        if (entry.type == typeof(string))
         {
-            entry.unit = parts[4];
+            entry.value = sides[1].Trim().Trim('"');
+        }
+        else
+        {
+            string[] valueParts = sides[1].Split(
+                ' ', 2, StringSplitOptions.RemoveEmptyEntries
+            );
+
+            entry.value = valueParts[0];
+
+            if (valueParts.Length > 1)
+                entry.unit = valueParts[1];
         }
 
         data.Add(entry.key, entry);
